@@ -4,7 +4,7 @@
 **Docente:** Erick Arguello
 **Integrantes:**
 * Sebastián López Duarte
-* [Nombre Estudiante 2]
+* Paola Andrea Cepeda Castro
 * [Nombre Estudiante 3]
 
 
