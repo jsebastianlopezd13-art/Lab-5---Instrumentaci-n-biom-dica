@@ -22,12 +22,12 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 ## 2. Objetivos
 
 ### Objetivo General
-* Operar con el simulador de parámetros hemodinámicos Pronk OxSim (OX-1) y el monitor de signos vitales uMEC 100 para realizar pruebas funcionales y de verificación de alarmas[cite: 16].
+* Operar con el simulador de parámetros hemodinámicos Pronk OxSim (OX-1) y el monitor de signos vitales uMEC 100 para realizar pruebas funcionales y de verificación de alarmas.
 
 ### Objetivos Específicos
-* Identificar los modos de operación y características técnicas de un simulador de parámetros hemodinámicos (Pronk OxSim OX-1)[cite: 16].
-* Verificar los límites de medición, tiempos de respuesta y activación de alarmas de un monitor de signos vitales ante escenarios simulados[cite: 16].
-* Interpretar las variaciones en los parámetros hemodinámicos y los errores de lectura comparados contra un equipo patrón[cite: 16].
+* Identificar los modos de operación y características técnicas de un simulador de parámetros hemodinámicos (Pronk OxSim OX-1).
+* Verificar los límites de medición, tiempos de respuesta y activación de alarmas de un monitor de signos vitales ante escenarios simulados.
+* Interpretar las variaciones en los parámetros hemodinámicos y los errores de lectura comparados contra un equipo patrón.
 
 ---
 
@@ -35,8 +35,8 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 
 | Descripción del Equipo / Dispositivo | Modelo / Referencia | Cantidad |
 | :--- | :--- | :---: |
-| Monitor de signos vitales con módulo de $\text{SpO}_2$ | Mindray uMEC 100[cite: 16] | 1 |
-| Simulador de parámetros hemodinámicos (Patrón) | Pronk OxSim OX-1[cite: 16] | 1 |
+| Monitor de signos vitales con módulo de $\text{SpO}_2$ | Mindray uMEC 100 | 1 |
+| Simulador de parámetros hemodinámicos (Patrón) | Pronk OxSim OX-1 | 1 |
 | Pinza / Sensor de pulsioximetría ($\text{SpO}_2$) | Compatible con OxSim / uMEC 100 | 1 |
 | Computador personal y herramientas de registro | Software de documentación | 1 |
 
@@ -80,10 +80,10 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 ## 6. Parte C — Preguntas para la Discusión
 
 1. **¿Cuál es el principio de operación del Pronk OxSim OX-1 para simular una onda pulsátil?**  
-   El OxSim simula ópticamente la transmisión y absorción de luz mediante diodos infrarrojos y rojos acoplados al sensor de pulsioximetría, modulando la intensidad lumínica de manera sincronizada con la frecuencia cardíaca configurada para imitar los cambios volumétricos del lecho capilar[cite: 19].
+   El OxSim simula ópticamente la transmisión y absorción de luz mediante diodos infrarrojos y rojos acoplados al sensor de pulsioximetría, modulando la intensidad lumínica de manera sincronizada con la frecuencia cardíaca configurada para imitar los cambios volumétricos del lecho capilar.
 
 2. **¿Por qué la $\text{SpO}_2$ baja puede ser un falso positivo (falsa alarma) en una situación de mala perfusión?**  
-   Ante una mala perfusión, la amplitud del pulso óptico disminuye reduciendo la relación señal-ruido ($\text{SNR}$). El algoritmo del oxímetro puede confundir el ruido con la señal real, interpretando caídas ficticias en la saturación sin que exista hipoxia real en el paciente[cite: 19].
+   Ante una mala perfusión, la amplitud del pulso óptico disminuye reduciendo la relación señal-ruido ($\text{SNR}$). El algoritmo del oxímetro puede confundir el ruido con la señal real, interpretando caídas ficticias en la saturación sin que exista hipoxia real en el paciente.
 
 ---
 
