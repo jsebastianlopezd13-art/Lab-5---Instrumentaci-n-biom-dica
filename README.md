@@ -49,7 +49,7 @@ Un oxSIM (simulador de oxigenación) es una herramienta de simulación utilizada
 
 ---
 
-## 4. Parte A — Marco Teórico y Cuestionario
+## 4. Parte A 
 
 ### a. ¿Cómo colocar al uMEC 100 en modo "monitor"?
 Para configurar el monitor Mindray uMEC 100 en modo operativo de monitorización clínica estándar ("Monitor Mode"), se enciende el equipo mediante el botón principal y se accede al menú de configuración del sistema (Setup Mode), seleccionando perfiles predeterminados para pacientes adultos/pediátricos y asegurando la adquisición en tiempo real desde el puerto de la sonda de $\text{SpO}_2$.
