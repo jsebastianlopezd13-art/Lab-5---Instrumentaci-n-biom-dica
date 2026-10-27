@@ -3,17 +3,17 @@
 **Asignatura:** Instrumentación Biomédica y Biosensores[cite: 11]  
 **Docente:** Ing. Alejandra Rosero Cárdenas / Equipo Académico[cite: 11]  
 **Integrantes / Colaboradores del Repositorio:**
-* [Nombre Estudiante 1]
+* Sebastián López Duarte
 * [Nombre Estudiante 2]
 * [Nombre Estudiante 3]
 
-> **Nota de repositorio:** Este documento consolida el desarrollo experimental, el análisis de datos de la toma de resultados, las respuestas teóricas y las evidencias gráficas correspondientes a la evaluación técnica y funcional del monitor de signos vitales mediante el simulador de parámetros hemodinámicos[cite: 15, 18].
+
 
 ---
 
 ## 1. Introducción y Contexto Teórico
 
-En el ámbito clínico, la monitorización continua de variables fisiológicas críticas como la frecuencia cardíaca ($\text{HR}$) y la saturación periférica de oxígeno ($\text{SpO}_2$) es vital para la seguridad del paciente[cite: 15]. Los equipos biomédicos deben ser capaces de detectar variaciones anómalas y activar alarmas oportunas ante riesgos inminentes (por ejemplo, bradicardias o hipoxias)[cite: 15]. 
+En el ámbito clínico, la monitorización continua de variables fisiológicas críticas como la frecuencia cardíaca ($\text{HR}$) y la saturación periférica de oxígeno ($\text{SpO}_2$) es vital para la seguridad del paciente. Los equipos biomédicos deben ser capaces de detectar variaciones anómalas y activar alarmas oportunas ante riesgos inminentes (por ejemplo, bradicardias o hipoxias). 
 
 Para verificar la respuesta técnica, los límites de medición y la correcta emisión de alarmas en los monitores de signos vitales (como el **Mindray uMEC 100**), se emplean simuladores especializados de parámetros hemodinámicos y de pulsioximetría, tales como el **Pronk OxSim OX-1**, que permiten recrear de forma controlada condiciones fisiológicas normales y patológicas[cite: 15].
 
