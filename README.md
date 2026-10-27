@@ -1,7 +1,7 @@
 # Laboratorio 5: Simulación y Monitoreo de Variables Cardiovasculares y Hemodinámicas
 
-**Asignatura:** Instrumentación Biomédica y Biosensores[cite: 11]  
-**Docente:** Ing. Alejandra Rosero Cárdenas / Equipo Académico[cite: 11]  
+**Asignatura:** Instrumentación Biomédica y Biosensores  
+**Docente:** Ing. Alejandra Rosero Cárdenas / Equipo Académico  
 **Integrantes / Colaboradores del Repositorio:**
 * Sebastián López Duarte
 * [Nombre Estudiante 2]
