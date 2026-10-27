@@ -40,6 +40,13 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 | Pinza / Sensor de pulsioximetría ($\text{SpO}_2$) | Compatible con OxSim / uMEC 100 | 1 |
 | Computador personal y herramientas de registro | Software de documentación | 1 |
 
+###OxSim
+
+Un oxSIM (simulador de oxigenación) es una herramienta de simulación utilizada en el ámbito biomédico para representar y estudiar los procesos relacionados con la oxigenación del organismo, permitiendo analizar variables como la concentración de oxígeno, la saturación de oxígeno en la sangre y el comportamiento de los sistemas de soporte respiratorio, según las características del simulador. Su importancia radica en que facilita la comprensión del funcionamiento del sistema respiratorio, permite evaluar diferentes condiciones de oxigenación y contribuye a la formación del personal de salud mediante escenarios controlados y seguros, sin necesidad de intervenir directamente sobre un paciente. Además, este tipo de simulación favorece el aprendizaje práctico, la evaluación de tecnologías biomédicas y la toma de decisiones clínicas, ayudando a mejorar la preparación de los profesionales y la seguridad en los procedimientos médicos.
+
+<img width="225" height="225" alt="image" src="https://github.com/user-attachments/assets/cd65158e-e1ed-4205-8423-821ebd53457a" />
+
+
 ---
 
 ## 4. Parte A — Marco Teórico y Cuestionario
