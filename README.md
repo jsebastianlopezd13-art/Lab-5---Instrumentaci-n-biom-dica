@@ -2,7 +2,7 @@
 
 **Asignatura:** Instrumentación Biomédica y Biosensores  
 **Docente:** Ing. Alejandra Rosero Cárdenas / Equipo Académico  
-**Integrantes / Colaboradores del Repositorio:**
+**Integrantes:**
 * Sebastián López Duarte
 * [Nombre Estudiante 2]
 * [Nombre Estudiante 3]
