@@ -31,7 +31,7 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 
 ---
 
-## 3. Equipos e Instrumentación Utilizada
+## 3. Equipos Utilizados
 
 | Descripción del Equipo / Dispositivo | Modelo / Referencia | Cantidad |
 | :--- | :--- | :---: |
@@ -40,7 +40,7 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 | Pinza / Sensor de pulsioximetría ($\text{SpO}_2$) | Compatible con OxSim / uMEC 100 | 1 |
 | Computador personal y herramientas de registro | Software de documentación | 1 |
 
-###OxSim
+### OxSim
 
 Un oxSIM (simulador de oxigenación) es una herramienta de simulación utilizada en el ámbito biomédico para representar y estudiar los procesos relacionados con la oxigenación del organismo, permitiendo analizar variables como la concentración de oxígeno, la saturación de oxígeno en la sangre y el comportamiento de los sistemas de soporte respiratorio, según las características del simulador. Su importancia radica en que facilita la comprensión del funcionamiento del sistema respiratorio, permite evaluar diferentes condiciones de oxigenación y contribuye a la formación del personal de salud mediante escenarios controlados y seguros, sin necesidad de intervenir directamente sobre un paciente. Además, este tipo de simulación favorece el aprendizaje práctico, la evaluación de tecnologías biomédicas y la toma de decisiones clínicas, ayudando a mejorar la preparación de los profesionales y la seguridad en los procedimientos médicos.
 
@@ -66,7 +66,7 @@ Para configurar el monitor Mindray uMEC 100 en modo operativo de monitorización
 
 ---
 
-## 5. Parte B — Pruebas Funcionales y Toma de Datos
+## 5. Parte B — Pruebas
 
 ### 5.1 Registro de Datos Obtenidos (Patrón vs. Monitor)
 A continuación se registran los datos experimentales obtenidos al conectar el equipo patrón (OxSim) al monitor de signos vitales, comparando una configuración defectuosa/errónea frente a la configuración exitosa:
