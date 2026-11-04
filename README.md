@@ -229,14 +229,80 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 
 \* *n.e.: la frecuencia cardíaca del modo *Low Perf* no está especificada en el panel del OxSim. El monitor mostró 80 bpm, lo cual es consistente con el modo de 80 bpm, pero no se tiene un patrón documentado contra el cual calcular el error.*
 
-### 6.2 Análisis del Comportamiento (Caso Exitoso vs. Fallido)
-* **Caso No Funcionó:** Durante la prueba con el patrón a $95\%$ de saturación y $40\text{ lpm}$ (bradicardia), el sistema mostró una lectura errónea de $94\%$ en saturación pero un fallo grave en la frecuencia cardíaca ($80\text{ lpm}$ en lugar de $40\text{ lpm}$). Esto evidencia una mala sincronización o pérdida de enganche de la onda pulsátil por parte del módulo, provocando un falso diagnóstico o la ausencia de la alarma crítica por bradicardia.
-* **Caso Sí Funcionó:** Tras corregir la configuración y la conexión del transductor con el patrón, el monitor uMEC 100 replicó fielmente los valores de referencia con errores insignificantes ($\le 1\%$), logrando disparar las alarmas sonoras y visuales correspondientes en los escenarios extremos (como los $40\text{ lpm}$ y $140\text{ lpm}$).
+### 6.5 Respuestas a las preguntas de la guía (Parte B)
+
+**¿La onda fotopletismográfica se distorsiona en el modo *Low Perf* (paso 9)?**
+Sí, en la Prueba 1 la onda se observa de menor amplitud y con una morfología más irregular que en los modos de 85 % y 98 %, coherente con el índice de perfusión de 0.45 que reporta el monitor (frente a ≈4.1–4.4 en los demás pasos). Con una señal pulsátil tan débil, el cociente señal/ruido disminuye y la forma de la onda se vuelve menos fiable. En la Prueba 2 el monitor dibujó la onda pero no pudo calcular valores.
+
+**¿Se dispara la alarma de frecuencia cardíaca elevada con 140 bpm (paso 10)?**
+* **Prueba 1: Sí.** Apareció `!!!FP alta > 110` (límite alto de FC de 110 bpm) con los valores resaltados en rojo.
+* **Prueba 2: No fue observada** en la captura, aunque el monitor ya mostraba 140 bpm con un límite alto de 120 bpm.
+
+**Relación entre la forma de onda y la FC.** En la ventana de unos 6 s que muestra la pantalla se cuentan ≈4 pulsos a 40 bpm, ≈8 a 80 bpm y ≈14 a 140 bpm, lo que concuerda con el cociente 40 : 80 : 140 (periodos de 1.5 s, 0.75 s y 0.43 s).
+
+---
+
+## 7. Comparación entre Prueba 1 y Prueba 2 (análisis del error)
+
+### 7.1 Valor esperado vs. valor obtenido
+
+![Comparación de lecturas](Imagenes/grafica_comparacion_pruebas.png)
+
+*En el escenario de 99 % (Low Perf) la Prueba 2 no tiene barra porque no hubo lectura. En el escenario de 140 bpm la barra de la Prueba 2 corresponde a la lectura obtenida ≈19 s después de simular, no a los 5 s de la guía.*
+
+### 7.2 Variación del error por escenario
+
+| Escenario | Esperado (patrón) | Obtenido Prueba 1 | Obtenido Prueba 2 | Error P1 (SpO₂ / FC) | Error P2 (SpO₂ / FC) | Variación P2 − P1 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| 40 bpm / 95 % | 95 % / 40 | 95 % / 40 | 95 % / 40 | 0 % / 0 % | 0 % / 0 % | Ninguna |
+| 80 bpm / 85 % | 85 % / 80 | 85 % / 80 | 85 % / 80 | 0 % / 0 % | 0 % / 0 % | Ninguna en la lectura; **cambia la prioridad de la alarma** (alta → media) |
+| 99 % *Low Perf* | 99 % / n.e. | 100 % / 80 | **Sin lectura** | 1.01 % / n.e. | No calculable | **Pérdida total de la medida**; no hay alarma de SpO₂ alta |
+| 140 bpm / 98 % | 98 % / 140 | 98 % / 140 | Sin lectura a los 5 s; 98 % / 140 a los ≈19 s | 0 % / 0 % | 0 % / 0 % (tras ≈19 s) | **Retraso de ≈19 s** y **ausencia de alarma de FC alta y de SpO₂ alta** |
+
+### 7.3 Indicadores estadísticos descriptivos
+
+Con solo cuatro escenarios por prueba, el análisis es **descriptivo** y no permite pruebas de hipótesis con potencia razonable.
+
+| Indicador | Prueba 1 | Prueba 2 |
+| :--- | :---: | :---: |
+| Error absoluto medio de SpO₂ (lecturas válidas) | 0.25 puntos (n = 4) | 0 puntos (n = 3) |
+| Error cuadrático medio (RMSE) de SpO₂ | 0.50 puntos | 0 puntos |
+| Error absoluto máximo de SpO₂ | 1 punto (Low Perf) | 0 puntos |
+| Error absoluto medio de FC (lecturas válidas con patrón) | 0 bpm (n = 3) | 0 bpm (n = 3 tras recuperar la señal) |
+| Escenarios con lectura válida a los 5 s | **4 / 4** | **2 / 4** |
+| Alarmas de SpO₂ esperadas que se generaron | **3 / 3** | **1 / 3** |
+| Alarma de FC alta (140 bpm) generada | **1 / 1** | **0 / 1** |
+| Errores dentro de la tolerancia (SpO₂ ±2 %; FC ±3 bpm) | 100 % de las lecturas | 100 % de las lecturas válidas |
+
+![Disponibilidad de medida y alarmas](Imagenes/grafica_disponibilidad_alarmas.png)
+
+### 7.4 Interpretación
+
+* **El error en las lecturas válidas fue prácticamente nulo en ambas pruebas** (máximo 1 punto de SpO₂, dentro de la tolerancia). Es decir, cuando la Prueba 2 logró medir, midió bien.
+* **La diferencia entre un equipo funcional y uno defectuoso no estuvo en la exactitud sino en la disponibilidad de la medida y de las alarmas.** La Prueba 2 perdió la señal en los escenarios de baja perfusión y de taquicardia, y no emitió las alarmas esperadas. Esto es más grave desde el punto de vista clínico que un error de 1–2 %, porque un monitor que no mide o que no alarma no alerta al personal ante un evento real.
+* Medir el desempeño solo con el error porcentual habría ocultado el defecto: **el error medio de la Prueba 2 (0 %) es mejor que el de la Prueba 1 (0.25 %)** únicamente porque se excluyen los escenarios sin lectura. Por eso se reportan también la disponibilidad y las alarmas generadas.
+* Los mensajes `!Exceso de luz para SpO2` y `!!!Sin pulso` indican que el canal óptico no estaba recibiendo una señal pulsátil utilizable. Las posibles causas que debe revisar el laboratorio son: mal acople óptico entre el OxSim y la pinza, luz ambiental, sensor o cable en mal estado, módulo de SpO₂ con fallo de ganancia o de calibración, o diferencia en la configuración del sensor. A partir de las fotografías **no es posible determinar cuál fue la causa raíz**; el equipo se clasifica como defectuoso por su comportamiento, no por una medición de calibración independiente.
+
+---
+
+## 8. Análisis de resultados
+
+> **Nota sobre la guía:** las secciones 12–14 de la guía mencionan un "BeneHeart D30" y la energía de un desfibrilador, lo cual parece un residuo de otra práctica. Los análisis se adaptaron al equipo realmente usado (uMEC 100) y a las variables medidas (SpO₂ y FC).
+
+### Análisis 1 — Diferencias entre los valores de referencia y los mostrados por el monitor
+
+Se compararon los valores del patrón (OxSim) con los mostrados por el uMEC 100 (secciones 6.4 y 7.3). En la Prueba 1 la diferencia máxima fue de 1 punto de SpO₂ (1.01 %) en el modo *Low Perf*, y 0 bpm en la FC; en la Prueba 2 las lecturas obtenidas coincidieron con el patrón, pero en dos de los cuatro escenarios no hubo lectura dentro de los 5 s. Todas las lecturas válidas cumplen la tolerancia de referencia. La lectura de 100 % para un patrón de 99 % en *Low Perf* está dentro de la exactitud esperada del pulsioxímetro y es probable que se deba a la baja amplitud de la señal.
+
+### Análisis 2 — Relación entre la forma de onda y la FC / SpO₂
+
+* **Frecuencia cardíaca:** el número de pulsos visibles por ventana de tiempo es proporcional a la FC (≈4, 8 y 14 pulsos a 40, 80 y 140 bpm). A 140 bpm la onda se vuelve casi sinusoidal porque el periodo es tan corto (≈0.43 s) que no se alcanza a distinguir la fase de descenso.
+* **Perfusión:** la amplitud de la onda y el índice de perfusión se relacionan directamente con la intensidad de la señal pulsátil. En *Low Perf* el IP cae a 0.45 y la onda se degrada.
+* **SpO₂:** la saturación no se aprecia directamente en la forma de la onda de un solo canal; se calcula a partir de la relación entre los componentes pulsátil (AC) y continuo (DC) de las señales rojo e infrarroja. Por eso un cambio de 85 % a 98 % no modifica de forma evidente la onda mostrada, mientras que un cambio de FC o de perfusión sí lo hace.
 
 
 ---
 
-## 6. Parte C — Preguntas para la Discusión
+## 9. Parte C — Preguntas para la Discusión
 
 1. **¿Cuál es el principio de operación del Pronk OxSim OX-1 para simular una onda pulsátil?**  
    El OxSim simula ópticamente la transmisión y absorción de luz mediante diodos infrarrojos y rojos acoplados al sensor de pulsioximetría, modulando la intensidad lumínica de manera sincronizada con la frecuencia cardíaca configurada para imitar los cambios volumétricos del lecho capilar.
@@ -246,13 +312,21 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 
 ---
 
-## 7. Conclusiones
+## 10. Conclusiones
 
 La práctica permitió evaluar el funcionamiento del monitor de signos vitales Mindray uMEC 100 mediante el simulador Pronk OxSim OX-1, comprendiendo su utilidad en la verificación de parámetros cardiovasculares y hemodinámicos. Durante los ensayos se identificó que una conexión o configuración inadecuada puede generar errores en las mediciones, especialmente en la frecuencia cardíaca, afectando la interpretación de los resultados. Sin embargo, después de corregir estas condiciones, el monitor logró registrar valores cercanos a los establecidos por el equipo patrón. Asimismo, se comprobó la activación de las alarmas ante condiciones de bradicardia y taquicardia, demostrando la importancia de estos sistemas para identificar posibles alteraciones fisiológicas. También se reconoció que la saturación de oxígeno y la frecuencia cardíaca son variables fundamentales para evaluar el estado general de un paciente. Por otra parte, el uso del simulador permitió realizar pruebas controladas sin poner en riesgo a una persona, facilitando la identificación de posibles fallas del equipo. Finalmente, esta experiencia permitió fortalecer los conocimientos sobre el manejo, la evaluación y la verificación de equipos biomédicos, destacando la importancia de garantizar mediciones confiables y respuestas oportunas de las alarmas en el entorno clínico.
 
 ---
+## 11. Limitaciones y recomendaciones
 
-## 8. Referencias Bibliográficas
+* Cada escenario se registró **una sola vez** (sin repeticiones), por lo que no es posible estimar repetibilidad ni incertidumbre de medida.
+* El **tiempo de respuesta** de las alarmas no se midió con cronómetro; solo se verificó su activación al cabo de los 5 s indicados en la guía.
+* No se documentó si el sensor, el cable y el OxSim eran **los mismos** en ambas pruebas, lo cual impide aislar la causa del fallo de la Prueba 2.
+* Según la hora mostrada por las pantallas, la Prueba 2 se registró entre las 15:26 y las 15:37 y la Prueba 1 a partir de las 15:45; el orden numérico no coincide con el cronológico.
+* **Recomendaciones:** repetir cada escenario al menos tres veces, intercambiar sensores entre monitores para aislar la causa del fallo, registrar el tiempo de activación de cada alarma y contrastar las tolerancias con la especificación del fabricante.
+
+---
+## 12. Referencias Bibliográficas
 
 [1] Instituto de Salud Pública de Chile (ISP), "Guía para la Clasificación de Dispositivos Médicos según Riesgo," ISPCH, Santiago, Chile, Guía técnica, 2021[cite: 20].  
 [2] Instituto Nacional de Vigilancia de Medicamentos y Alimentos (INVIMA), *ABC de Dispositivos Médicos - Guía Reguladora*, Bogotá, Colombia: INVIMA[cite: 20].  
