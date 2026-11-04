@@ -82,7 +82,7 @@ El procedimiento siguió la guía de laboratorio (Parte B):
 5. **Paso 2 — Hipoxia:** límite inferior de alarma de SpO₂ en 90 %. OxSim en 85 % / 80 bpm. Se esperaron 5 s y se verificó la alarma sonora/visual.
 6. **Paso 3 — Baja perfusión:** límite superior de alarma de SpO₂ en 97 %. OxSim en 99 % (*Low Perf*). Se esperaron 5 s, se verificó la alarma y se observó la onda.
 7. **Paso 4 — Taquicardia:** OxSim en 98 % / 140 bpm. Registro de la onda y verificación de la alarma de FC elevada.
-8. En cada paso se fotografió la pantalla del uMEC 100 y el panel del OxSim (carpeta [`images/`](images/)).
+8. En cada paso se fotografió la pantalla del uMEC 100 y el panel del OxSim.
 9. Cálculo de errores y comparación entre pruebas.
 
 ### 4.3 Cálculo de errores
