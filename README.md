@@ -45,7 +45,17 @@ Para verificar la respuesta técnica, los límites de medición y la correcta em
 Un oxSIM (simulador de oxigenación) es una herramienta de simulación utilizada en el ámbito biomédico para representar y estudiar los procesos relacionados con la oxigenación del organismo, permitiendo analizar variables como la concentración de oxígeno, la saturación de oxígeno en la sangre y el comportamiento de los sistemas de soporte respiratorio, según las características del simulador. Su importancia radica en que facilita la comprensión del funcionamiento del sistema respiratorio, permite evaluar diferentes condiciones de oxigenación y contribuye a la formación del personal de salud mediante escenarios controlados y seguros, sin necesidad de intervenir directamente sobre un paciente. Además, este tipo de simulación favorece el aprendizaje práctico, la evaluación de tecnologías biomédicas y la toma de decisiones clínicas, ayudando a mejorar la preparación de los profesionales y la seguridad en los procedimientos médicos.
 
 <img width="225" height="225" alt="image" src="https://github.com/user-attachments/assets/cd65158e-e1ed-4205-8423-821ebd53457a" />
+Según el panel del equipo (visible en las fotografías), el OX-1 ofrece **cinco modos fijos** y un selector de sensor:
 
+| Modo (selector MODE) | SpO₂ simulada | FC simulada |
+| :---: | :---: | :---: |
+| 1 | 85 % | 80 bpm |
+| 2 | 95 % | 40 bpm (bradicardia) |
+| 3 | 98 % | 80 bpm |
+| 4 | 98 % | 140 bpm (taquicardia) |
+| 5 | 99 % | *Low Perf* (baja perfusión; FC no indicada en el panel) |
+
+El selector **SENSOR** permite elegir *Auto*, *HP/Ohm* u *Other* (en todas las pruebas se usó *Auto*), y los indicadores *Batt*, *IR* y *Red* muestran el estado de la batería y la actividad de los emisores de luz infrarroja y roja del sensor.
 
 ---
 
