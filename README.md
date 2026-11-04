@@ -5,7 +5,7 @@
 **Integrantes:**
 * Sebastián López Duarte
 * Paola Andrea Cepeda Castro
-* [Nombre Estudiante 3]
+* José Daniel Porras Rodriguéz
 
 
 
