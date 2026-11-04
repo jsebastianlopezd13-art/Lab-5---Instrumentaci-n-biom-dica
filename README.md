@@ -133,9 +133,9 @@ En la parte superior izquierda de la pantalla se observa además el **modo de fi
 
 ---
 
-## 5. Parte B — Pruebas
+## 6. Parte B — Pruebas
 
-### 5.1 Registro de Datos Obtenidos (Patrón vs. Monitor)
+### 6.1 Registro de Datos Obtenidos (Patrón vs. Monitor)
 A continuación se registran los datos experimentales obtenidos al conectar el equipo patrón (OxSim) al monitor de signos vitales, comparando una configuración defectuosa/errónea frente a la configuración exitosa:
 
 | Condición / Ensayo | Parámetro Patrón ($\text{SpO}_2$ / $\text{HR}$) | Caso No Funcionó ($\text{SpO}_2$ / $\text{HR}$) | Caso Sí Funcionó ($\text{SpO}_2$ / $\text{HR}$) | Error Absoluto ($\text{SpO}_2$ / $\text{HR}$) | Error Porcentual ($\text{SpO}_2$ / $\text{HR}$) | Estado de Alarma |
@@ -149,9 +149,90 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 
 <img width="500" height="500" alt="MVIMG_20261020_145324" src="https://github.com/user-attachments/assets/0bf77266-063d-483b-8fab-83faf80bdbe0" />
 
-### 5.2 Análisis del Comportamiento (Caso Exitoso vs. Fallido)
+**Notas:**
+
+1. En ambas pruebas la FC simulada de 40 bpm quedó por debajo del límite bajo configurado (45 y 50 bpm respectivamente), pero **en las fotografías no se observa ninguna alarma de FC baja**. No se registró si se escuchó una alarma sonora ni se midió el retardo de activación; este punto debe contrastarse con el manual (las alarmas de FC/FP pueden tener retardos y condiciones de activación) o repetirse.
+2. La alarma `T1 baja < 35.0` es ajena a la prueba: el sensor de temperatura no estaba conectado y el monitor leía la temperatura ambiente (≈22 °C).
+3. En la captura posterior (≈19 s después, según el contador "Deriv ECG desconect.") el monitor ya mostraba 140 bpm / 98 %, pero **no apareció la alarma de FC alta** (140 > 120) ni la de SpO₂ alta (98 > 97) que se esperaban con los límites configurados. Es posible que las alarmas estuvieran silenciadas o pausadas, lo cual no se verificó.
+
+### 6.2 Registro de datos — Prueba 1 (equipo funcional)
+
+**Paso 1 — Bradicardia (40 bpm, SpO₂ 95 %).** El monitor mostró 40 bpm y 95 %. La onda pletismográfica tiene un periodo largo (≈4 pulsos en la ventana visible) con ascenso rápido y descenso más lento.
+
+| OxSim | uMEC 100 |
+| :---: | :---: |
+| <img src="Imagenes/prueba1_paso1_oxsim_40bpm_95.jpg" width="380"> | <img src="Imagenes/prueba1_paso1_monitor_40bpm_95.jpg" width="380"> |
+
+**Paso 2 — Hipoxia (80 bpm, SpO₂ 85 %), límite bajo = 90 %.** El monitor mostró 80 bpm y 85 % y activó la alarma roja `SpO2 bajo < 90`.
+
+| OxSim | uMEC 100 |
+| :---: | :---: |
+| <img src="Imagenes/prueba1_paso2_oxsim_85_80bpm.jpg" width="380"> | <img src="Imagenes/prueba1_paso2_monitor_alarma_spo2_bajo.jpg" width="380"> |
+
+**Paso 3 — Baja perfusión (99 %), límite alto = 97 %.** El monitor mostró 80 bpm y **100 %**, con un índice de perfusión de 0.45, y activó la alarma `SpO2 alto > 97`. La onda es de menor amplitud y con morfología más irregular que en los otros modos (ver respuesta en 6.4).
+
+| OxSim | uMEC 100 |
+| :---: | :---: |
+| <img src="Imagenes/prueba1_paso3_oxsim_lowperf.jpg" height="300"> | <img src="Imagenes/prueba1_paso3_monitor_alarma_spo2_alto.jpg" width="380"> |
+
+**Paso 4 — Taquicardia (140 bpm, SpO₂ 98 %).** El monitor mostró 140 bpm y 98 %. Primero estaba activa la alarma de SpO₂ alta (98 > 97) y a continuación apareció la alarma `FP alta > 110`, con los valores resaltados en rojo.
+
+| OxSim | uMEC 100 (SpO₂ alta) | uMEC 100 (FC alta) |
+| :---: | :---: | :---: |
+| <img src="Imagenes/prueba1_paso4_oxsim_98_140bpm.jpg" width="250"> | <img src="Imagenes/prueba1_paso4_monitor_140bpm_spo2_alto.jpg" width="250"> | <img src="Imagenes/prueba1_paso4_monitor_alarma_fc_alta.jpg" width="250"> |
+
+### 6.3 Registro de datos — Prueba 2 (equipo defectuoso)
+
+**Paso 1 — Bradicardia (40 bpm, SpO₂ 95 %).** Lectura correcta (40 bpm / 95 %). La onda tiene forma diferente a la de la Prueba 1 (más "diente de sierra") y se dibuja en otro color; el índice de perfusión fue 4.17.
+
+| OxSim | uMEC 100 |
+| :---: | :---: |
+| <img src="Imagenes/prueba2_paso1_oxsim_40bpm_95.jpg" width="380"> | <img src="Imagenes/prueba2_paso1_monitor_40bpm_95.jpg" width="380"> |
+
+**Paso 2 — Hipoxia (80 bpm, SpO₂ 85 %).** Antes de simular, se configuraron los límites en el menú *Ajuste alarma* (SpO₂ 100/90). Lectura correcta (80 bpm / 85 %) y alarma `SpO2 bajo < 90`, pero **en prioridad media (amarillo)** en lugar de alta (rojo) como en la Prueba 1.
+
+| Límites configurados | OxSim | uMEC 100 |
+| :---: | :---: | :---: |
+| <img src="Imagenes/prueba2_paso2_limites_alarma_100_90.jpg" width="250"> | <img src="Imagenes/prueba2_paso2_oxsim_85_80bpm.jpg" width="250"> | <img src="Imagenes/prueba2_paso2_monitor_alarma_spo2_bajo.jpg" width="250"> |
+
+**Paso 3 — Baja perfusión (99 %), límite alto = 97 %.** Tras ajustar el límite alto a 97 % (captura izquierda), **el monitor no mostró ningún valor de FC ni de SpO₂** (aparecen guiones) y generó las alarmas `!!!Sin pulso` y `!Exceso de luz para SpO2`. La onda sí se dibujaba, pero sin valores numéricos asociados.
+
+| Límites configurados | OxSim | uMEC 100 |
+| :---: | :---: | :---: |
+| <img src="Imagenes/prueba2_paso3_limites_alarma_97_90.jpg" width="250"> | <img src="Imagenes/prueba2_paso3_oxsim_lowperf.jpg" width="250"> | <img src="Imageness/prueba2_paso3_monitor_sin_pulso.jpg" width="250"> |
+
+**Paso 4 — Taquicardia (140 bpm, SpO₂ 98 %).** Inicialmente el monitor siguió sin mostrar valores (`Sin pulso`, `Exceso de luz para SpO2`) a pesar de dibujar una onda sinusoidal de alta frecuencia. Unos 19 s después mostró 140 bpm / 98 %, pero **sin alarma de FC alta ni de SpO₂ alta**.
+
+| uMEC 100 (inicio) | OxSim | uMEC 100 (≈19 s después) |
+| :---: | :---: | :---: |
+| <img src="Imagenes/prueba2_paso4_monitor_sin_pulso.jpg" width="250"> | <img src="Imagenes/prueba2_paso4_oxsim_98_140bpm.jpg" width="250"> | <img src="Imagenes/prueba2_paso4_monitor_140bpm_98_sin_alarma_fc.jpg" width="250"> |
+
+### 6.4 Tabla de errores absoluto y porcentual (patrón vs. monitor)
+
+**Prueba 1 (equipo funcional)**
+
+| Paso | Patrón SpO₂ / FC | Monitor SpO₂ / FC | Error abs. SpO₂ | Error % SpO₂ | Error abs. FC | Error % FC |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 (bradicardia) | 95 % / 40 bpm | 95 % / 40 bpm | 0 | 0 % | 0 bpm | 0 % |
+| 2 (hipoxia) | 85 % / 80 bpm | 85 % / 80 bpm | 0 | 0 % | 0 bpm | 0 % |
+| 3 (*Low Perf*) | 99 % / n.e.* | 100 % / 80 bpm | 1 | 1.01 % | n.e.* | n.e.* |
+| 4 (taquicardia) | 98 % / 140 bpm | 98 % / 140 bpm | 0 | 0 % | 0 bpm | 0 % |
+
+**Prueba 2 (equipo defectuoso)**
+
+| Paso | Patrón SpO₂ / FC | Monitor SpO₂ / FC | Error abs. SpO₂ | Error % SpO₂ | Error abs. FC | Error % FC |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 (bradicardia) | 95 % / 40 bpm | 95 % / 40 bpm | 0 | 0 % | 0 bpm | 0 % |
+| 2 (hipoxia) | 85 % / 80 bpm | 85 % / 80 bpm | 0 | 0 % | 0 bpm | 0 % |
+| 3 (*Low Perf*) | 99 % / n.e.* | **Sin lectura** | No calculable | — (pérdida de medida) | n.e.* | n.e.* |
+| 4 (taquicardia) | 98 % / 140 bpm | Sin lectura a los 5 s; **98 % / 140 bpm** a los ≈19 s | 0 (tras recuperar) | 0 % (tras recuperar) | 0 bpm (tras recuperar) | 0 % (tras recuperar) |
+
+\* *n.e.: la frecuencia cardíaca del modo *Low Perf* no está especificada en el panel del OxSim. El monitor mostró 80 bpm, lo cual es consistente con el modo de 80 bpm, pero no se tiene un patrón documentado contra el cual calcular el error.*
+
+### 6.2 Análisis del Comportamiento (Caso Exitoso vs. Fallido)
 * **Caso No Funcionó:** Durante la prueba con el patrón a $95\%$ de saturación y $40\text{ lpm}$ (bradicardia), el sistema mostró una lectura errónea de $94\%$ en saturación pero un fallo grave en la frecuencia cardíaca ($80\text{ lpm}$ en lugar de $40\text{ lpm}$). Esto evidencia una mala sincronización o pérdida de enganche de la onda pulsátil por parte del módulo, provocando un falso diagnóstico o la ausencia de la alarma crítica por bradicardia.
 * **Caso Sí Funcionó:** Tras corregir la configuración y la conexión del transductor con el patrón, el monitor uMEC 100 replicó fielmente los valores de referencia con errores insignificantes ($\le 1\%$), logrando disparar las alarmas sonoras y visuales correspondientes en los escenarios extremos (como los $40\text{ lpm}$ y $140\text{ lpm}$).
+
 
 ---
 
