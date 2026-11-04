@@ -88,9 +88,6 @@ El procedimiento siguió la guía de laboratorio (Parte B):
 ### 4.3 Cálculo de errores
 
 Para cada variable, con *V_patrón* el valor simulado por el OxSim y *V_monitor* el valor mostrado por el uMEC 100:
-
-$$E_{abs} = \left| V_{monitor} - V_{patr\acute{o}n} \right| \qquad E_{\%} = \frac{E_{abs}}{V_{patr\acute{o}n}} \times 100$$
-
 Cuando el monitor **no mostró ningún valor** (pantalla con "--"), el error no se puede calcular con estas fórmulas. En ese caso se reporta como **"sin lectura"** y se contabiliza como pérdida de la medida (equivalente a un 100 % de indisponibilidad en ese escenario).
 
 ### 4.4 Criterios de aceptación
