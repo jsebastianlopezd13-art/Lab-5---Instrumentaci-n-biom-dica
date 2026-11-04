@@ -58,8 +58,54 @@ Según el panel del equipo (visible en las fotografías), el OX-1 ofrece **cinco
 El selector **SENSOR** permite elegir *Auto*, *HP/Ohm* u *Other* (en todas las pruebas se usó *Auto*), y los indicadores *Batt*, *IR* y *Red* muestran el estado de la batería y la actividad de los emisores de luz infrarroja y roja del sensor.
 
 ---
+## 4. Metodología
 
-## 4. Parte A 
+### 4.1 Diseño experimental
+
+Se aplicó el mismo protocolo de cuatro escenarios a dos configuraciones del monitor:
+
+* **Prueba 1:** uMEC 100 que funcionó correctamente. Perfil "Valores predeterm. fábrica", paciente adulto, filtro de ECG en modo *Diagnóstico*.
+* **Prueba 2:** uMEC 100 con comportamiento defectuoso (no entregaba los datos simulados en varios escenarios). Mismo perfil de fábrica, paciente adulto, filtro de ECG en modo *Cirugía* y prioridad de alarmas de SpO₂ en *Medio*.
+
+En ambos casos el **patrón** es el OxSim OX-1, cuyo valor configurado se toma como valor verdadero convencional, y el **instrumento bajo prueba** es el uMEC 100.
+
+> Como el ECG no estaba conectado (la pantalla muestra "Deriv ECG desconect."), la frecuencia cardíaca que se muestra proviene del pulso de SpO₂ (la pantalla indica *Origen: SpO₂*). Por tanto, la FC evaluada es en realidad la **frecuencia de pulso (FP)** derivada de la onda fotopletismográfica.
+
+### 4.2 Procedimiento
+
+El procedimiento siguió la guía de laboratorio (Parte B):
+
+1. Construcción de la tabla de verificación de alarmas (límite configurado, valor simulado, ¿alarma activa? y tiempo de respuesta).
+2. Encendido del uMEC 100 y selección del modo de monitorización.
+3. Conexión de la pinza de pulsioximetría al OxSim OX-1.
+4. **Paso 1 — Bradicardia:** OxSim en 95 % / 40 bpm. Registro de lecturas y de la forma de onda fotopletismográfica.
+5. **Paso 2 — Hipoxia:** límite inferior de alarma de SpO₂ en 90 %. OxSim en 85 % / 80 bpm. Se esperaron 5 s y se verificó la alarma sonora/visual.
+6. **Paso 3 — Baja perfusión:** límite superior de alarma de SpO₂ en 97 %. OxSim en 99 % (*Low Perf*). Se esperaron 5 s, se verificó la alarma y se observó la onda.
+7. **Paso 4 — Taquicardia:** OxSim en 98 % / 140 bpm. Registro de la onda y verificación de la alarma de FC elevada.
+8. En cada paso se fotografió la pantalla del uMEC 100 y el panel del OxSim (carpeta [`images/`](images/)).
+9. Cálculo de errores y comparación entre pruebas.
+
+### 4.3 Cálculo de errores
+
+Para cada variable, con *V_patrón* el valor simulado por el OxSim y *V_monitor* el valor mostrado por el uMEC 100:
+
+$$E_{abs} = \left| V_{monitor} - V_{patr\acute{o}n} \right| \qquad E_{\%} = \frac{E_{abs}}{V_{patr\acute{o}n}} \times 100$$
+
+Cuando el monitor **no mostró ningún valor** (pantalla con "--"), el error no se puede calcular con estas fórmulas. En ese caso se reporta como **"sin lectura"** y se contabiliza como pérdida de la medida (equivalente a un 100 % de indisponibilidad en ese escenario).
+
+### 4.4 Criterios de aceptación
+
+* **SpO₂:** error dentro de ±2 % a ±3 % puntos de SpO₂ (rango típico de exactitud de pulsioxímetros; la norma ISO 80601-2-61 exige exactitud en el rango 70–100 %).
+* **FC / frecuencia de pulso:** error dentro de ±3 bpm (valor típico de especificación de los módulos de SpO₂ de monitores de cabecera).
+* **Alarmas:** debe activarse la alarma correspondiente cuando el valor simulado supera el límite configurado, con prioridad y mensaje coherentes, dentro del tiempo de verificación de 5 s indicado en la guía.
+
+> Estas tolerancias son valores de referencia comunes y deben contrastarse con la especificación del manual del uMEC 100 y con la norma aplicable.
+
+### 4.5 Registro y seguridad
+
+Los datos se registraron mediante fotografías de las pantallas (con la hora del monitor visible) y se transcribieron a las tablas de este informe. Se siguieron las normas de seguridad de la guía: manipulación de los equipos solo con presencia del técnico, uso de bata, pantalón largo y cabello recogido, y sin dejar sesiones iniciadas en los equipos de cómputo institucionales.
+
+## 5. Parte A 
 
 ### a. ¿Cómo colocar al uMEC 100 en modo "monitor"?
 Para configurar el monitor Mindray uMEC 100 en modo operativo de monitorización clínica estándar ("Monitor Mode"), se enciende el equipo mediante el botón principal y se accede al menú de configuración del sistema (Setup Mode), seleccionando perfiles predeterminados para pacientes adultos/pediátricos y asegurando la adquisición en tiempo real desde el puerto de la sonda de $\text{SpO}_2$.
