@@ -103,22 +103,33 @@ Cuando el monitor **no mostró ningún valor** (pantalla con "--"), el error no 
 Los datos se registraron mediante fotografías de las pantallas (con la hora del monitor visible) y se transcribieron a las tablas de este informe. Se siguieron las normas de seguridad de la guía: manipulación de los equipos solo con presencia del técnico, uso de bata, pantalón largo y cabello recogido, y sin dejar sesiones iniciadas en los equipos de cómputo institucionales.
 
 ## 5. Parte A 
-
 ### a. ¿Cómo colocar al uMEC 100 en modo "monitor"?
-Para configurar el monitor Mindray uMEC 100 en modo operativo de monitorización clínica estándar ("Monitor Mode"), se enciende el equipo mediante el botón principal y se accede al menú de configuración del sistema (Setup Mode), seleccionando perfiles predeterminados para pacientes adultos/pediátricos y asegurando la adquisición en tiempo real desde el puerto de la sonda de $\text{SpO}_2$.
+
+El uMEC 100 se enciende con el botón de encendido y, una vez iniciado, queda en la pantalla principal de monitorización con un paciente admitido (en las fotografías: paciente tipo **Adulto**, perfil "Valores predeterm. fábrica" y nombre de paciente "Prueba 1" / "Prueba 2"). Allí se muestran en tiempo real el ECG, la onda pletismográfica (Plet), SpO₂, respiración, temperatura y PANI.
+
+En la parte superior izquierda de la pantalla se observa además el **modo de filtro de ECG**, que en monitores Mindray puede ser *Monitor*, *Diagnóstico* o *Cirugía*. En nuestras pruebas se usó *Diagnóstico* (Prueba 1) y *Cirugía* (Prueba 2). Este filtro afecta únicamente a la señal de ECG y no a la medida de SpO₂, pero conviene dejarlo registrado porque difiere entre pruebas.
+
+> **Pendiente de verificar con el manual de operación del uMEC 100:** la ruta exacta del menú para seleccionar el filtro *Monitor* y la distinción entre el modo de monitorización normal, el modo de espera (*Standby*) y el modo de configuración/demo. La guía solicita contrastar esta información contra el manual.
 
 <img width="500" height="500" alt="IMG_20261020_145225" src="https://github.com/user-attachments/assets/b3316b9d-e143-4c0a-afcd-1de6277eb4c3" />
 
+### b. ¿Qué parámetros fisiológicos pueden simularse con el OxSim OX-1?
 
-### b. ¿Qué tipo de parámetros o variables fisiológicas pueden simularse con el Pronk OxSim OX-1? Explique cada una.
-* **Frecuencia Cardíaca ($\text{HR}$):** Simulación de latidos por minuto en rangos de bradicardia, normocardia y taquicardia.
-* **Saturación Periférica de Oxígeno ($\text{SpO}_2$):** Porcentaje de oxigenación de la hemoglobina arterial.
-* **Perfusión / Amplitud de Pulso:** Simulación de baja perfusión periférica para evaluar la sensibilidad del sensor ante señales débiles.
-* **Onda Fotopletismográfica:** Reproducción óptica de la curva de volumen sanguíneo sincronizada con el pulso.
+* **Saturación periférica de oxígeno (SpO₂):** porcentaje de hemoglobina oxigenada en sangre arterial. El OX-1 genera valores fijos de 85 %, 95 %, 98 % y 99 %, que permiten probar un valor de hipoxia, uno normal-bajo, uno normal y uno alto.
+* **Frecuencia cardíaca / frecuencia de pulso (FC):** latidos por minuto reproducidos por la señal pulsátil: 40 bpm (bradicardia), 80 bpm (normal) y 140 bpm (taquicardia).
+* **Perfusión / amplitud de pulso (modo *Low Perf*):** simula una señal pulsátil de amplitud muy reducida, típica de mala perfusión periférica, para evaluar la sensibilidad del monitor ante señales débiles. En el monitor se refleja como un **índice de perfusión (IP)** muy bajo (0.45 en la Prueba 1, frente a ≈4.1–4.4 en los demás modos).
+* **Onda fotopletismográfica:** curva de variación del volumen sanguíneo sincronizada con el pulso, que el monitor dibuja en el canal *Plet*. Su frecuencia depende de la FC simulada y su amplitud del nivel de perfusión.
 
-### c. En el ámbito clínico, ¿cuáles son los errores máximos permitidos (EMP) para cada parámetro?
-* **Frecuencia Cardíaca:** Error permitido de $\pm 1\%$ o $\pm 1\text{ bpm}$ frente al patrón.
-* **Saturación de Oxígeno ($\text{SpO}_2$):** Tolerancia clínica estándar de $\pm 2\%$ a $\pm 3\%$ en el intervalo operativo.
+**Lo que el OxSim no simula:** el OX-1 no genera ECG, arritmias, presión arterial, respiración ni artefactos de movimiento, y solo ofrece combinaciones fijas de SpO₂/FC (no valores arbitrarios).
+
+### c. Errores máximos permitidos (EMP) en el ámbito clínico
+
+| Parámetro | EMP de referencia | Comentario |
+| :--- | :---: | :--- |
+| SpO₂ | ±2 % a ±3 % (puntos de SpO₂) | Rango típico de exactitud de pulsioxímetros de uso clínico en 70–100 %; la exactitud empeora por debajo de 70 % |
+| FC / frecuencia de pulso | ±3 bpm (típico) | Algunos fabricantes especifican ±2 % o ±1 bpm. Valor a confirmar con el manual del equipo |
+
+> Estos valores deben confirmarse con la hoja de especificaciones/manual del uMEC 100 y con la norma ISO 80601-2-61 antes de la entrega final.
 
 ---
 
