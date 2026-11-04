@@ -96,8 +96,9 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 
 ## 7. Conclusiones
 
-* La implementación de pruebas funcionales usando el simulador Pronk OxSim como patrón permitió contrastar de forma directa el comportamiento operativo del monitor uMEC 100, identificando fallas de lectura ante configuraciones deficientes.
-* Se comprobó que cuando el sistema funciona correctamente, los errores de medición son mínimos ($\le 1\%$), garantizando una alta confiabilidad en la emisión oportuna de alarmas clínicas ante eventos de taquicardia y bradicardia.
+## 7. Conclusiones
+
+La práctica permitió evaluar el funcionamiento del monitor de signos vitales Mindray uMEC 100 mediante el simulador Pronk OxSim OX-1, identificando su utilidad en la verificación de parámetros cardiovasculares y hemodinámicos. A través de las pruebas realizadas, se evidenció que una conexión o configuración inadecuada puede generar lecturas erróneas y afectar la detección de condiciones críticas. Asimismo, se comprobó que, al corregir estas condiciones, el monitor logró registrar valores cercanos a los establecidos por el equipo patrón. También se verificó la activación de las alarmas ante escenarios de bradicardia y taquicardia, demostrando su importancia para la seguridad del paciente. Finalmente, la experiencia permitió comprender la importancia de los simuladores biomédicos en la evaluación del desempeño, la precisión y la confiabilidad de los equipos de monitorización clínica.
 
 ---
 
