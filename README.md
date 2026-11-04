@@ -54,6 +54,9 @@ Un oxSIM (simulador de oxigenación) es una herramienta de simulación utilizada
 ### a. ¿Cómo colocar al uMEC 100 en modo "monitor"?
 Para configurar el monitor Mindray uMEC 100 en modo operativo de monitorización clínica estándar ("Monitor Mode"), se enciende el equipo mediante el botón principal y se accede al menú de configuración del sistema (Setup Mode), seleccionando perfiles predeterminados para pacientes adultos/pediátricos y asegurando la adquisición en tiempo real desde el puerto de la sonda de $\text{SpO}_2$.
 
+<img width="4080" height="3060" alt="IMG_20261020_145225" src="https://github.com/user-attachments/assets/b3316b9d-e143-4c0a-afcd-1de6277eb4c3" />
+
+
 ### b. ¿Qué tipo de parámetros o variables fisiológicas pueden simularse con el Pronk OxSim OX-1? Explique cada una.
 * **Frecuencia Cardíaca ($\text{HR}$):** Simulación de latidos por minuto en rangos de bradicardia, normocardia y taquicardia.
 * **Saturación Periférica de Oxígeno ($\text{SpO}_2$):** Porcentaje de oxigenación de la hemoglobina arterial.
@@ -77,6 +80,10 @@ A continuación se registran los datos experimentales obtenidos al conectar el e
 | **2 (Bradicardia)** | $95\% \text{ / } 40\text{ lpm}$ | $94\% \text{ / } 80\text{ lpm}$ | $96\% \text{ / } 40\text{ lpm}$ | $\Delta\text{SpO}_2 = 1\%$<br>$\Delta\text{HR} = 0\text{ bpm}$ | $\text{SpO}_2: 1.05\%$<br>$\text{HR}: 0\%$ | **Activa** (Alarma por Bradicardia $< 50\text{ lpm}$) |
 | **3** | $98\% \text{ / } 80\text{ lpm}$ | *Sin registro* | $98\% \text{ / } 80\text{ lpm}$ | $0\% \text{ / } 0\text{ bpm}$ | $0\% \text{ / } 0\%$ | Sin alarma |
 | **4 (Taquicardia)** | $98\% \text{ / } 140\text{ lpm}$ | *Sin registro* | $98\% \text{ / } 140\text{ lpm}$ | $0\% \text{ / } 0\text{ bpm}$ | $0\% \text{ / } 0\%$ | **Activa** (Alarma por Taquicardia $> 120\text{ lpm}$) |
+
+<img width="4080" height="3060" alt="MVIMG_20261020_150052" src="https://github.com/user-attachments/assets/24e03925-6baa-4d15-8af0-45298989c1f4" />
+
+<img width="4080" height="3060" alt="MVIMG_20261020_145324" src="https://github.com/user-attachments/assets/0bf77266-063d-483b-8fab-83faf80bdbe0" />
 
 ### 5.2 Análisis del Comportamiento (Caso Exitoso vs. Fallido)
 * **Caso No Funcionó:** Durante la prueba con el patrón a $95\%$ de saturación y $40\text{ lpm}$ (bradicardia), el sistema mostró una lectura errónea de $94\%$ en saturación pero un fallo grave en la frecuencia cardíaca ($80\text{ lpm}$ en lugar de $40\text{ lpm}$). Esto evidencia una mala sincronización o pérdida de enganche de la onda pulsátil por parte del módulo, provocando un falso diagnóstico o la ausencia de la alarma crítica por bradicardia.
